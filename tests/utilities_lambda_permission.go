@@ -5,10 +5,9 @@ import (
 	"testing"
 
 	"github.com/gruntwork-io/terratest/modules/terraform"
-	"github.com/stretchr/testify/assert"
 )
 
-func testTemplate(t *testing.T, variant string) {
+func testLambdaPermission(t *testing.T, variant string) {
 	t.Parallel()
 
 	terraformDir := fmt.Sprintf("../examples/%s", variant)
@@ -20,8 +19,7 @@ func testTemplate(t *testing.T, variant string) {
 
 	defer terraform.Destroy(t, terraformOptions)
 
-	terraform.InitAndApply(t, terraformOptions)
+	packageLambda(t, variant)
 
-	output := terraform.Output(t, terraformOptions, "hello_world")
-	assert.Equal(t, "Hello, World!", output)
+	terraform.InitAndApply(t, terraformOptions)
 }
