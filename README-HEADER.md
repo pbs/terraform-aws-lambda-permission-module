@@ -1,4 +1,4 @@
-# PBS TF lambda permission module
+# PBS TF Lambda Permission Module
 
 ## Installation
 
